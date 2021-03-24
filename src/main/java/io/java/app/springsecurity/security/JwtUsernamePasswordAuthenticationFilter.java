@@ -54,7 +54,7 @@ public class JwtUsernamePasswordAuthenticationFilter extends UsernamePasswordAut
 											FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
 		// TODO Auto-generated method stub
-		String authKey="manunmanunkanmanuanmsnamsnamnsmansmnamsnamsnmansnamsnmansanm";
+		String authKey="thismustbesecureandnoonetoknowthisbecauseissecret";
 		String token=Jwts.builder()
 		.setSubject(authResult.getName())
 		.claim("authorities", authResult.getAuthorities()).setIssuedAt(new Date())

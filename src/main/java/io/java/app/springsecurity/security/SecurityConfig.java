@@ -21,6 +21,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	private final PasswordEncoder passwordEncoder;
 	
 	private final ApplicationUserService applicationUserService;
+	
 
 	public SecurityConfig(PasswordEncoder passwordEncoder,ApplicationUserService applicationUserService) {
 		this.applicationUserService = applicationUserService;
@@ -34,6 +35,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 					.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 				.and()
 				.addFilter(new JwtUsernamePasswordAuthenticationFilter(authenticationManager()))
+				.addFilterAfter(new JwtTokenVerifier(), JwtUsernamePasswordAuthenticationFilter.class)
 				.authorizeRequests()
 				.antMatchers("/login", "/logout", "/", "index", "/css/*", "/js/*")
 				.permitAll()
